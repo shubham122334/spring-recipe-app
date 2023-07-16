@@ -4,7 +4,7 @@ package com.shuham.springrecipeapp.domain;
 import jakarta.persistence.*;
 
 @Entity
-public class UnitOfMessure {
+public class UnitOfMeasure {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
