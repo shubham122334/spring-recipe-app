@@ -21,11 +21,19 @@ public class Recipe {
     private String directions;
     @Lob
     private Byte[] image;
+    @Enumerated(EnumType.STRING)
+    private Difficulty difficulty;
 
     @OneToMany(cascade = CascadeType.ALL,mappedBy = "recipe")
-    private Set<Ingredient> ingredients=new HashSet<>();
+    private Set<Ingredient> ingredients;
     @OneToOne(cascade = CascadeType.ALL)
     private Notes notes;
+
+    @ManyToMany
+    @JoinTable(name="recipe_category",
+                joinColumns = @JoinColumn(name = "recipe_id"),
+                inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private Set<Category> categories;
 
 
     public void setId(Long id) {
@@ -114,5 +122,21 @@ public class Recipe {
 
     public void setIngredients(Set<Ingredient> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Difficulty getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(Difficulty difficulty) {
+        this.difficulty = difficulty;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
