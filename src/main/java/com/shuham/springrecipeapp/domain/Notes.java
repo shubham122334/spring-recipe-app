@@ -1,7 +1,12 @@
 package com.shuham.springrecipeapp.domain;
 
 
+
+
 import jakarta.persistence.*;
+
+
+
 
 @Entity
 public class Notes {
@@ -12,6 +17,7 @@ public class Notes {
 
     @OneToOne
     private Recipe recipe;
+
     @Lob
     private String recipeNotes;
 

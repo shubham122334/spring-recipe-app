@@ -1,5 +1,6 @@
 package com.shuham.springrecipeapp.domain;
 
+
 import jakarta.persistence.*;
 
 import java.math.BigDecimal;
@@ -12,11 +13,26 @@ public class Ingredient {
     private Long id;
     private String description;
     private BigDecimal amount;
-    @ManyToOne
-    private Recipe recipe;
 
     @OneToOne(fetch = FetchType.EAGER)
     private UnitOfMeasure unitOfMeasure;
+
+
+    @ManyToOne
+    private Recipe recipe;
+
+    public Ingredient() {
+    }
+
+
+    public Ingredient(String ripeAvocados, BigDecimal bigDecimal, UnitOfMeasure eachUom, Recipe guacRecipe) {
+        this.description=ripeAvocados;
+        this.amount=bigDecimal;
+        this.unitOfMeasure=eachUom;
+        this.recipe=guacRecipe;
+    }
+
+
     public Long getId() {
         return id;
     }
@@ -24,6 +40,7 @@ public class Ingredient {
     public void setId(Long id) {
         this.id = id;
     }
+
 
     public String getDescription() {
         return description;
@@ -47,5 +64,12 @@ public class Ingredient {
 
     public void setRecipe(Recipe recipe) {
         this.recipe = recipe;
+    }
+    public UnitOfMeasure getUnitOfMeasure() {
+        return unitOfMeasure;
+    }
+
+    public void setUnitOfMeasure(UnitOfMeasure unitOfMeasure) {
+        this.unitOfMeasure = unitOfMeasure;
     }
 }
