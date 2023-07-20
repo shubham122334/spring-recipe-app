@@ -47,6 +47,7 @@ public class Recipe {
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
 
+    public Recipe(){}
     public Long getId() {
         return id;
     }

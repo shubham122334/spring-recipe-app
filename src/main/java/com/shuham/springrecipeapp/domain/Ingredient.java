@@ -21,15 +21,17 @@ public class Ingredient {
     @ManyToOne
     private Recipe recipe;
 
-    public Ingredient() {
-    }
 
 
     public Ingredient(String ripeAvocados, BigDecimal bigDecimal, UnitOfMeasure eachUom, Recipe guacRecipe) {
         this.description=ripeAvocados;
-        this.amount=bigDecimal;
         this.unitOfMeasure=eachUom;
+        this.amount=bigDecimal;
         this.recipe=guacRecipe;
+    }
+
+    public Ingredient() {
+
     }
 
 

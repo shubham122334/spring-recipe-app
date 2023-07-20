@@ -1,11 +1,6 @@
 package com.shuham.springrecipeapp.domain;
 
 
-
-
-
-
-
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -19,11 +14,14 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+
     private String description;
 
     @ManyToMany(mappedBy = "categories")
     private Set<Recipe> recipes=new HashSet<>();
 
+    public Category(){}
     public Long getId() {
         return id;
     }
@@ -31,6 +29,7 @@ public class Category {
     public void setId(Long id) {
         this.id = id;
     }
+
 
 
     public String getDescription() {
