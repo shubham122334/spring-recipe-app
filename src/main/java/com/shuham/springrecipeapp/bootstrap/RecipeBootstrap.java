@@ -4,6 +4,7 @@ import com.shuham.springrecipeapp.domain.*;
 import com.shuham.springrecipeapp.repositories.CategoryRepository;
 import com.shuham.springrecipeapp.repositories.RecipeRepository;
 import com.shuham.springrecipeapp.repositories.UnitOfMeasureRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.annotation.ComponentScan;
@@ -15,9 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-/**
- * Created by jt on 6/13/17.
- */
+@Slf4j
 @Component
 @ComponentScan(basePackages = "com.shubham.springrecipeapp")
 public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEvent>  {
@@ -39,7 +38,7 @@ public class RecipeBootstrap implements ApplicationListener<ContextRefreshedEven
 
 
             recipeRepository.saveAll(getRecipes());
-
+            log.debug("loading bootstrap data");
     }
 
 
