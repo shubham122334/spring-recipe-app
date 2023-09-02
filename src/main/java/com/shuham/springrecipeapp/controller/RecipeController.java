@@ -1,11 +1,10 @@
 package com.shuham.springrecipeapp.controller;
 
+import com.shuham.springrecipeapp.commands.RecipeCommand;
 import com.shuham.springrecipeapp.services.RecipeService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("recipe")
@@ -17,10 +16,31 @@ public class RecipeController {
         this.recipeService = recipeService;
     }
 
-    @GetMapping("/show/{id}")
+    @GetMapping("/{id}/show")
     public String showById(@PathVariable  Long id , Model model){
 
         model.addAttribute("recipe",recipeService.findById(id));
         return "views/recipe/show";
+    }
+
+    @RequestMapping("/{id}/update")
+    public String update(@PathVariable Long id , Model model){
+        model.addAttribute("recipe",recipeService.findCommandById(Long.valueOf(id)));
+        return "views/recipe/recipe-form";
+    }
+
+    @RequestMapping("/new/")
+    public String newRecipe(Model model){
+
+        model.addAttribute("recipe", new RecipeCommand());
+
+        return "views/recipe/recipe-form";
+    }
+
+    @PostMapping("/recipe/")
+    public String saveOrUpdate(@ModelAttribute RecipeCommand command){
+        RecipeCommand savedCommand = recipeService.saveRecipeCommand(command);
+
+        return "redirect:/recipe/" + savedCommand.getId()+ "/show";
     }
 }

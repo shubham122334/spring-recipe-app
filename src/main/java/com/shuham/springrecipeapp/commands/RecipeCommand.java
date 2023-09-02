@@ -20,7 +20,7 @@ public class RecipeCommand {
     private String source;
     private String url;
     private String direction;
-    private Set<IngredientCommand> ingredient=new HashSet<>();
+    private Set<IngredientCommand> ingredients=new HashSet<>();
     private Difficulty difficulty;
     private NotesCommand notes;
     private Set<CategoryCommand> category=new HashSet<>();
