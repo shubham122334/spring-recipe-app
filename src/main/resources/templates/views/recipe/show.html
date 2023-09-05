@@ -15,6 +15,8 @@
 <div class="container-fluid" style="margin-top: 20px">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
+            <button  class="btn btn-primary" style="margin: 10px;" onclick="window.location.href='/'" > Go To Home</button>
+
             <div class="panel-group">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
@@ -25,10 +27,15 @@
                             <div class="col-md-3">
                                 <h5>Categories:</h5>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-3">
                                 <ul th:each="category : ${recipe.categories}">
-                                    <li th:text="${category.description}">cat one</li>
+                                    <li th:text="${category.getDescription()}">cat one</li>
                                 </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="/static/resources/images/img.png "
+                                width="200" height="200">
+
                             </div>
                         </div>
                         <div class="row">
@@ -77,7 +84,14 @@
                 </div>
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h1 class="panel-title" >Ingredients</h1>
+                       <div class="row">
+                        <div class="col-md-11">
+                            <h1 class="panel-title" >Ingredients</h1>
+                        </div>
+                        <div class="col-md-1">
+                            <a class="btn btn-default" href="#" th:href="@{'/recipe/' + ${recipe.id} + '/ingredients'}" role="button">View</a>
+                        </div>
+                       </div>
                     </div>
                     <div class="panel-body">
                         <div class="row">

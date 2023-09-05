@@ -18,8 +18,8 @@
                     <h1 class="panel-title">My Recipes</h1>
                 </div>
                 <div class="panel-body">
+                    <button  class="btn btn-primary" onclick="window.location.href='recipe/new/'" > New Recipe</button>
                     <div class="table-responsive" th:if="${not #lists.isEmpty(recipes)}">
-                        <button  class="btn btn-primary" onclick="window.location.href='recipe/new/'" > New Recipe</button>
                         <table class="table table-hover">
                             <thead>
                             <tr>
@@ -27,6 +27,7 @@
                                 <th>Description</th>
                                 <th>View</th>
                                 <th>Update</th>
+                                <th>Delete</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -35,6 +36,8 @@
                                 <td th:text="${recipe.description}"></td>
                                 <td><a th:href="@{'/recipe/'+${recipe.id}+'/show'}">view</a></td>
                                 <td><a th:href="@{'/recipe/'+${recipe.id}+'/update'}">update</a></td>
+                                <td><a th:href="@{'/recipe/'+${recipe.id}+'/delete'}"
+                                onclick="if (!(confirm('are you sure You want to delete'))) return false;">delete</a></td>
                             </tr>
                             </tbody>
                         </table>
